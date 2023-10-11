@@ -1,6 +1,6 @@
 {
   "name": "backend-log",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Logs for console in backend systems, using CGMP pattern",
   "main": "backendLog.js",
   "scripts": {
