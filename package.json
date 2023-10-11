@@ -1,11 +1,15 @@
 {
   "name": "backend-log",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Logs for console in backend systems, using CGMP pattern",
   "main": "backendLog.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "MWG Digital",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MWG-Digital/backend-log.git"
+  }
 }
