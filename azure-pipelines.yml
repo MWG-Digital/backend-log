@@ -1,0 +1,16 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+jobs:
+- job: PushToGitHub
+  steps:
+  - script: |
+      git config --global user.email "israel@mwg.digital"
+      git config --global user.name "Israel Melicio"
+      git remote add github https://github.com/MWG-Digital/backend-log.git
+      git push github HEAD:main
+    env:
+      GH_TOKEN: $(GitHub.Token)
