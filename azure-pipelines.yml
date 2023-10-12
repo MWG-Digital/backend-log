@@ -13,4 +13,4 @@ jobs:
       git remote add github https://github.com/MWG-Digital/backend-log.git
       git push github HEAD:main
     env:
-      GH_TOKEN: $(GitHub.Token)
+      GH_TOKEN: $(GITHUB_TOKEN)
