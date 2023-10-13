@@ -1,25 +1,21 @@
 trigger:
-  - main
+  branches:
+    include:
+    - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
-steps:
+jobs:
+- job: SyncToGitHub
+  steps:
+  - checkout: self
   - script: |
-      git config user.name "MWG Bot 🤖"
-      git config user.email "cloud@mwg.digital"
-    displayName: "Setup Git client"
-
-  - script: git remote add GitHub $GITHUB_GIT_URL
-    displayName: "Add GitHub repository"
+      git config user.email "MWG Bot 🤖"
+      git config user.name "cloud@mwg.digital"
+      git remote add github https://$TOKEN:x-oauth-basic@$REPO_URL
+      git push -u github HEAD:main
+    displayName: 'Push to GitHub'
     env:
-      GITHUB_GIT_URL: $(GITHUB_GIT_URL)
-
-  - script: |
-      git -c http.extraHeader="Authorization: Basic $GITHUB_TOKEN" pull GitHub HEAD:$BRANCH_NAME
-      git -c http.extraHeader="Authorization: Basic $GITHUB_TOKEN" push --set-upstream GitHub HEAD:$BRANCH_NAME
-      git -c http.extraHeader="Authorization: Basic $GITHUB_TOKEN" push GitHub --tags
-    displayName: "Commit and push to GitHub Git"
-    env:
-      GITHUB_TOKEN: $(GITHUB_TOKEN)
-      BRANCH_NAME: $(GITHUB_BRANCH_NAME)
+      TOKEN: $(GITHUB_TOKEN)
+      REPO_URL: $(GITHUB_GIT_URL)
