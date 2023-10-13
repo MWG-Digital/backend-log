@@ -1,0 +1,23 @@
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - script: |
+      git config user.name "MWG Bot 🤖"
+      git config user.email "cloud@mwg.digital"
+    displayName: "Setup Git client"
+
+  - script: git remote add GitHub $(GITHUB_GIT_URL)
+    displayName: "Add GitHub repository"
+
+  - script: |
+      git checkout -b $(GITHUB_BRANCH_NAME)
+      git add .
+      git commit -m "GITHUB code transport"
+      git -c http.extraHeader="Authorization: Basic $GITHUB_TOKEN" push --set-upstream GitHub $(GITHUB_BRANCH_NAME)
+    displayName: "Commit and push to GitHub Git"
+    env:
+      GITHUB_TOKEN: $(GITHUB_TOKEN)
