@@ -16,7 +16,7 @@ steps:
       GITHUB_GIT_URL: $(GITHUB_GIT_URL)
 
   - script: |
-      git -c http.extraHeader="Authorization: Basic $GITHUB_TOKEN" push --set-upstream GitHub $BRANCH_NAME
+      git -c http.extraHeader="Authorization: Basic $GITHUB_TOKEN" push --set-upstream GitHub
       git -c http.extraHeader="Authorization: Basic $GITHUB_TOKEN" push GitHub --tags
     displayName: "Commit and push to GitHub Git"
     env:
