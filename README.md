@@ -13,16 +13,16 @@ npm install backend-log
 Import the `Console` class from the package and use its static methods for logging:
 
 ```javascript
-const { Console } = require("backend-log");
+const { Console } = require('backend-log')
 
 // Log an info message
-Console.info("Info message");
+Console.info('Info message')
 
 // Log a payload message
-Console.payload("Payload message");
+Console.payload('Payload message')
 
 // Log an error message
-Console.error("Error message");
+Console.error('Error message')
 ```
 
 ## Configuration
