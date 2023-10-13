@@ -14,9 +14,6 @@ steps:
     displayName: "Add GitHub repository"
 
   - script: |
-      git checkout -b $(GITHUB_BRANCH_NAME)
-      git add .
-      git commit -m "GITHUB code transport"
       git -c http.extraHeader="Authorization: Basic $GITHUB_TOKEN" push --set-upstream GitHub $(GITHUB_BRANCH_NAME)
     displayName: "Commit and push to GitHub Git"
     env:
