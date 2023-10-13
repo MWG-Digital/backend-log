@@ -10,13 +10,15 @@ steps:
       git config user.email "cloud@mwg.digital"
     displayName: "Setup Git client"
 
-  - script: |
-      git config credential.helper 'store --file=.git-credentials'
-      echo "https://$GITHUB_TOKEN:x-oauth-basic@github.com" > .git-credentials
+  - script: git remote add GitHub $GITHUB_GIT_URL
     displayName: "Add GitHub repository"
-    env:
-      GITHUB_TOKEN: $(GITHUB_TOKEN_PLAIN_TEXT)
+   env:
+     GITHUB_GIT_URL: $(GITHUB_GIT_URL)
 
   - script: |
-      git push origin main
+      git -c http.extraHeader="Authorization: Basic $GITHUB_TOKEN" push --set-upstream GitHub BRANCH_NAME
+      git -c http.extraHeader="Authorization: Basic $GITHUB_TOKEN" push GitHub --tags
     displayName: "Commit and push to GitHub Git"
+    env:
+      GITHUB_TOKEN: $(GITHUB_TOKEN)
+      BRANCH_NAME: $(GITHUB_BRANCH_NAME)
