@@ -12,10 +12,10 @@ steps:
 
   - script: |
       git config credential.helper 'store --file=.git-credentials'
-      echo "https://<token>:x-oauth-basic@github.com" > .git-credentials
+      echo "https://$GITHUB_TOKEN:x-oauth-basic@github.com" > .git-credentials
     displayName: "Add GitHub repository"
     env:
-      GITHUB_TOKEN: $(GITHUB_TOKEN)
+      GITHUB_TOKEN: $(GITHUB_TOKEN_PLAIN_TEXT)
 
   - script: |
       git push origin main
