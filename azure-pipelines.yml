@@ -12,8 +12,8 @@ steps:
 
   - script: git remote add GitHub $GITHUB_GIT_URL
     displayName: "Add GitHub repository"
-   env:
-     GITHUB_GIT_URL: $(GITHUB_GIT_URL)
+    env:
+      GITHUB_GIT_URL: $(GITHUB_GIT_URL)
 
   - script: |
       git -c http.extraHeader="Authorization: Basic $GITHUB_TOKEN" push --set-upstream GitHub BRANCH_NAME
